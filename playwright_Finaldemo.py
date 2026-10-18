@@ -14,6 +14,9 @@ with sync_playwright() as p:
     #navigate to the weather site
     page.goto("https://www.accuweather.com/en/in/chennai/206671/weather-forecast/206671")
     
+    # give time to load the page 
+    page.wait_for_timeout(3000)  # wait for 3 seconds to ensure the page loads completely
+    
     #extract weather data
     weather_data = page.inner_text("div.CurrentConditions--primary--2SVPh")
     print(f"Weather Data: {weather_data}")
